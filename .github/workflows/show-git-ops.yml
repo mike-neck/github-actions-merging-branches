@@ -1,6 +1,7 @@
 name: show-git-ops
 on:
   push: {}
+  workflow_dispatch: {}
 
 jobs:
   show:
