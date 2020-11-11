@@ -4,18 +4,19 @@ on:
 
 jobs:
   show:
-  runs-on: ubuntu-20.04
-  steps:
-    - name: checkout
-      uses: actions/checkout@v2
+    name: show
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
 
-    - name: show github event
-      run: echo "${EVENT}"
-      env:
-        EVENT: ${{ github.event }}
+      - name: show github event
+        run: echo "${EVENT}"
+        env:
+          EVENT: ${{ github.event }}
 
-    - name: run git branches
-      run: git branch --all
+      - name: run git branches
+        run: git branch --all
 
-    - name: run git log
-      run: git log -n 5 --oneline
+      - name: run git log
+        run: git log -n 5 --oneline
