@@ -11,6 +11,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: time of now
+        id: now
+        run: TZ=JST-9 date "+%Y%m%d.%H.%M"
+
       - name: show github event
         run: echo "${EVENT}"
         env:
