@@ -13,7 +13,7 @@ jobs:
       - name: show github event
         run: echo "${EVENT}"
         env:
-          EVENT: ${{ github.event }}
+          EVENT: ${{ toJson(github.event) }}
 
       - name: run git branches
         run: git branch --all
