@@ -1,15 +1,27 @@
 name: show-git-ops
 on:
   push: {}
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'タグ'
+        required: true
+        default: '0000'
+        type: string
+      depth:
+        description: 'number of git logs'
+        required: true
+        type: integer
 
 jobs:
   show:
     name: show
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: "${{ fromJSON(inputs.depth) }}"
 
       - name: time of now
         id: now
@@ -18,7 +30,7 @@ jobs:
       - name: show github event
         run: echo "${EVENT}"
         env:
-          EVENT: ${{ toJson(github.event) }}
+          EVENT: ${{ toJSON(github.event) }}
 
       - name: run git branches
         run: git branch --all
